@@ -1,1 +1,5 @@
 ud120-projects
+.Python
+bin/
+include/
+lib/
