@@ -1,4 +1,4 @@
-# Feature creep
+# Finding POIs
 
 import pickle
 
