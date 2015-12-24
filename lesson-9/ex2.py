@@ -1,4 +1,4 @@
-# Stock Option Range
+# Computing Rescaled Features
 
 #### Boilerplate #################################################################
 
@@ -30,11 +30,21 @@ data_dict.pop("TOTAL", 0)
 
 #### Exercise code #############################################################
 
-features_list = ['exercised_stock_options']
+from sklearn.preprocessing import MinMaxScaler
+
+feature_1 = "salary"
+feature_2 = "exercised_stock_options"
+features_list = [feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
-flat_data = [item for sub in data for item in sub]
-print max(flat_data)
-print min(flat_data)
+
+def scale(arr, value):
+    scaler = MinMaxScaler()
+    scaler.fit(arr)
+    return scaler.transform([float(value)])[0] 
+
+print scale([item[0] for item in data], 200000)
+print scale([item[1] for item in data], 1000000)
+
 
 #### Boilerplate #################################################################
 try:
