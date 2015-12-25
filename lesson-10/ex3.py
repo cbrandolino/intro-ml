@@ -23,14 +23,14 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         if temp_counter < 200:
             path = os.path.join('../ud120-projects/', path[:-1])
             email = open(path, "r")
-
+            
 #### Exercise code #############################################################
 
             text = parseOutText(email)
             taboo = ["sara", "shackleton", "chris", "germani"]
             purified_text = ' '.join([word for word in text.split() if word not in taboo])
             word_data.append(purified_text)
-            from_data.append( 0 if 'sara' else 1)
+            from_data.append( 0 if (name == 'sara') else 1)
 
 #### Boilerplate #################################################################
 

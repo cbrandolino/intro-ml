@@ -30,7 +30,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         for word in taboo:
           text = text.replace(word, '')
         word_data.append(text)
-        from_data.append( 0 if 'sara' else 1)
+        from_data.append( 0 if (name == 'sara') else 1)
         email.close()
 
 from sklearn.feature_extraction.text import TfidfVectorizer
