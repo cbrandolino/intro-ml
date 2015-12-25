@@ -26,7 +26,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 #### Exercise code #############################################################
 
         text = parseOutText(email)
-        taboo = ["sara", "shackleton", "chris", "germani"]
+        taboo = ["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]
         for word in taboo:
           text = text.replace(word, '')
         word_data.append(text)  
