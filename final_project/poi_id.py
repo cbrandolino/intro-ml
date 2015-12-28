@@ -12,11 +12,9 @@ from tester import dump_classifier_and_data
 ### The first feature must be "poi".
 features_list = [
     'poi',
-    'salary',
     'bonus',
     'total_stock_value',
-    'from_poi_to_this_person_rate',
-    'from_this_person_to_poi_rate'
+    'from_poi_to_this_person_rate'
 ]
 
 ### Load the dictionary containing the dataset
@@ -37,9 +35,9 @@ for name in data_dict:
     datapoint = data_dict[name]
     for a, b in email_rates_factors:
         if (datapoint[a] == "NaN") or (datapoint[b] == "NaN") or (datapoint[a] == 0):
-            datapoint[a + "_rate"] = "NaN"
+            datapoint[b + "_rate"] = "NaN"
         else:
-            datapoint[a + "_rate"] = float(datapoint[b]) / datapoint[a]
+            datapoint[b + "_rate"] = float(datapoint[b]) / datapoint[a]
     my_dataset[name] = datapoint
 
 
