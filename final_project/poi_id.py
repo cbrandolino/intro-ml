@@ -10,7 +10,14 @@ from tester import dump_classifier_and_data
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
-features_list = ['poi','salary','bonus']
+features_list = [
+    'poi',
+    'salary',
+    'bonus',
+    'total_stock_value',
+    'from_poi_to_this_person_rate',
+    'from_this_person_to_poi_rate'
+]
 
 ### Load the dictionary containing the dataset
 with open("final_project_dataset.pkl", "r") as data_file:
@@ -21,7 +28,20 @@ del data_dict['TOTAL']
 
 ### Task 3: Create new feature(s)
 ### Store to my_dataset for easy export below.
-my_dataset = data_dict
+email_rates_factors = [
+    ('from_messages', 'from_this_person_to_poi'),
+    ('to_messages', 'from_poi_to_this_person')
+]
+my_dataset = {}
+for name in data_dict:
+    datapoint = data_dict[name]
+    for a, b in email_rates_factors:
+        if (datapoint[a] == "NaN") or (datapoint[b] == "NaN") or (datapoint[a] == 0):
+            datapoint[a + "_rate"] = "NaN"
+        else:
+            datapoint[a + "_rate"] = float(datapoint[b]) / datapoint[a]
+    my_dataset[name] = datapoint
+
 
 ### Extract features and labels from dataset for local testing
 data = featureFormat(my_dataset, features_list, sort_keys = True)
